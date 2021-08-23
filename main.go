@@ -53,13 +53,12 @@ func main() {
 			fmt.Printf("Current tab: %s\n", t.N)
 			fmt.Println("Items:")
 			for _, i := range stashResp.Items {
-				f := "  %s\n"
-				a := []interface{}{i.TypeLine}
+				s := "  "
 				if i.Name != "" {
-					f = "  %s, %s\n"
-					a = []interface{}{i.Name, i.TypeLine}
+					s += i.Name + ", "
 				}
-				fmt.Printf(f, a...)
+				s += i.TypeLine
+				fmt.Println(s)
 			}
 		}
 	}
@@ -75,6 +74,5 @@ type stashResp struct {
 	Items []struct {
 		Name     string `json:"name"`
 		TypeLine string `json:"typeLine"`
-		BaseType string `json:"baseType"`
 	} `json:"items"`
 }
